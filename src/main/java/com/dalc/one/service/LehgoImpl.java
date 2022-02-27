@@ -125,6 +125,15 @@ public class LehgoImpl implements LehgoFacade{
 	public UserKeyword getUserKeyword(@Valid User user) {
 		return ukRepo.findByUserId(user.getId());
 	}
+	
+	@Override
+	public Boolean isInUserKeyword(String userId) {
+		if(ukRepo.findByUserId(userId) == null) {
+			return false;
+		}
+		return true;
+	}
+	
 	// ** Place **
 	@Override
 	public Place getPlace(int id) {
@@ -295,7 +304,7 @@ public class LehgoImpl implements LehgoFacade{
 	}
 	@Override
 	public List<Course> getVisibleCourse() {
-		return courseRepo.findByVisibility(1);
+		return courseRepo.findByVisibility(0);
 	}
 	
 	/* Course Detail */

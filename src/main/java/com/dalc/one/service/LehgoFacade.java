@@ -38,6 +38,7 @@ public interface LehgoFacade {
 	
 	/* User Keyword */
 	UserKeyword getUserKeyword(@Valid User user);
+	Boolean isInUserKeyword(String userId);
 	
 	//Place
 	Place getPlace(int id);
