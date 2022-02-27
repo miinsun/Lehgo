@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dalc.one.dao.UserDAO;
 import com.dalc.one.domain.Place;
+import com.dalc.one.domain.PlaceKeyword;
 import com.dalc.one.domain.User;
 import com.dalc.one.domain.UserKeyword;
 import com.dalc.one.domain.UserLikeCourse;
@@ -25,6 +26,7 @@ import com.dalc.one.repository.CoursePlaceRepository;
 import com.dalc.one.repository.CourseRepository;
 import com.dalc.one.repository.FolderPlaceRepository;
 import com.dalc.one.repository.FolderRepository;
+import com.dalc.one.repository.PlaceKeywordRepository;
 import com.dalc.one.repository.PlaceRepository;
 import com.dalc.one.repository.UserKeywordRepository;
 import com.dalc.one.repository.UserLikeCourseRepository;
@@ -66,6 +68,9 @@ public class LehgoImpl implements LehgoFacade{
 	@Autowired
 	private UserKeywordRepository ukRepo;
 	
+	@Autowired
+	private PlaceKeywordRepository pkRepo;
+
 	public List<User> getUserList(){
 		return userDao.getUserList();
 	}
@@ -115,6 +120,11 @@ public class LehgoImpl implements LehgoFacade{
 		return ukRepo.save(entity);
 	}
 	
+	/* User Keyword */
+	@Override
+	public UserKeyword getUserKeyword(@Valid User user) {
+		return ukRepo.findByUserId(user.getId());
+	}
 	// ** Place **
 	@Override
 	public Place getPlace(int id) {
@@ -188,6 +198,12 @@ public class LehgoImpl implements LehgoFacade{
 	public int deleteUserVisitedPlace(@Valid User user, int id) {
 		return usRepo.deleteByUserIdAndPlaceId(user.getId(), id);
 	}
+	
+	/* AI Place */
+	@Override
+	public List<PlaceKeyword> getAiPlaceList(int keyword) {
+		return pkRepo.findPlaceKeywordBykeyword(keyword);
+	}
 
 	
 	/* Folder */
@@ -233,6 +249,13 @@ public class LehgoImpl implements LehgoFacade{
 	@Override
 	public int deleteFolderPlace(int folderId, int placeId) {
 		return fpRepo.deleteByFolderIdAndPlaceId(folderId, placeId);
+	}
+	@Override
+	public Boolean isInMyFolder(String userId, int placeId) {
+		if(folderRepo.findByUserIdAndFolderPlace_PlaceId(userId, placeId) == null) {
+			return false;
+		}
+		return true;
 	}
 	
 	/* Course */
