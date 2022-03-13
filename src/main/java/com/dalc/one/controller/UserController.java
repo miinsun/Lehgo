@@ -166,9 +166,8 @@ public class UserController{
 	//비밀번호 재설정
 	@ResponseBody
 	@PutMapping("users/resetpw")
-	public ResponseEntity<HttpStatus> resetPw(@Valid @RequestBody User user, @RequestParam(value = "pw") String pw, 
-			HttpServletResponse response) throws Exception {
-		user.setPassword(pw);
+	public ResponseEntity<HttpStatus> resetPw(@Valid @RequestBody User user, HttpServletResponse response) throws Exception {
+		user.setPassword(user.getPassword());
 		try {
 			userService.resetPw(user);
 		} catch(NullPointerException e) {

@@ -48,7 +48,6 @@ public class PlaceController{
 	public ResponseEntity<List<Place>> getPlaceListbyCategory(@RequestParam("category") String category ) throws Exception {
 		return ResponseEntity.ok(lehgo.getPlaceListbyCategory(category));
 	}
-
 	@ResponseBody
 	@GetMapping("search/area")
 	public ResponseEntity<List<Place>> getPlaceListbyArea(@RequestParam("area") String area ) throws Exception {

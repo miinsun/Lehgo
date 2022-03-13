@@ -32,6 +32,13 @@ public class OauthController {
      * 사용자로부터 SNS 로그인 요청을 Social Login Type 을 받아 처리
      * @param socialLoginType (GOOGLE, FACEBOOK, NAVER, KAKAO)
      */
+    @GetMapping(value = "/{socialLoginType}/redirect")
+    public void Redirect(HttpServletResponse response,
+    		@PathVariable(name = "socialLoginType") SocialLoginType socialLoginType) {
+        response.setHeader("Location", "http://localhost:8080/ouath/" + socialLoginType);
+        response.setStatus(302);
+    }
+    
     @GetMapping(value = "/{socialLoginType}")
     public void socialLoginType(
             @PathVariable(name = "socialLoginType") SocialLoginType socialLoginType) {

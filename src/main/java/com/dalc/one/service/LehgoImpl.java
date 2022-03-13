@@ -114,8 +114,11 @@ public class LehgoImpl implements LehgoFacade{
 	}
 	@Override
 	public UserKeyword addUserKeyword(User user, int type) {
-		UserKeyword entity = new UserKeyword();
-		entity.setUserId(user.getId());
+		UserKeyword entity;
+		if((entity = getUserKeyword(user)) == null) {
+			entity = new UserKeyword();
+			entity.setUserId(user.getId());
+		}
 		entity.setKeywordId(type);
 		return ukRepo.save(entity);
 	}
@@ -310,7 +313,7 @@ public class LehgoImpl implements LehgoFacade{
 	/* Course Detail */
 	@Override
 	public List<CoursePlace> getCourseDetail(int courseId) {
-		return cpRepo.findByCourseId(courseId);
+		return cpRepo.findByCourseIdOrderByPriority(courseId);
 	}
 	@Override
 	public CoursePlace addCourseDetail(int courseId, int placeId, int priority) {
