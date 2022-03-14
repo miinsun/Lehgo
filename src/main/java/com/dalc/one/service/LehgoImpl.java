@@ -130,11 +130,13 @@ public class LehgoImpl implements LehgoFacade{
 	}
 	
 	@Override
-	public Boolean isInUserKeyword(String userId) {
+	public int isInUserKeyword(String userId) {
 		if(ukRepo.findByUserId(userId) == null) {
-			return false;
+			return 0;
 		}
-		return true;
+		else {
+			return ukRepo.findByUserId(userId).getKeywordId();
+		}
 	}
 	
 	// ** Place **
@@ -213,10 +215,9 @@ public class LehgoImpl implements LehgoFacade{
 	
 	/* AI Place */
 	@Override
-	public List<PlaceKeyword> getAiPlaceList(int keyword) {
-		return pkRepo.findPlaceKeywordBykeyword(keyword);
+	public List<PlaceKeyword> getAiPlaceList(int keyword, String category) {
+		return pkRepo.findPlaceKeywordList(keyword, category);
 	}
-
 	
 	/* Folder */
 	@Override

@@ -254,7 +254,7 @@ public class UserController{
 	
 	@ResponseBody
 	@GetMapping("user/keyword/isin")
-	public ResponseEntity<Boolean> isInUserKeyword(HttpServletRequest request, @RequestParam("id") String userId) throws Exception {
+	public ResponseEntity<Integer> isInUserKeyword(HttpServletRequest request, @RequestParam("id") String userId) throws Exception {
 		String authorizationHeader = request.getHeader("authorization");
 		if (authorizationHeader == null) {
 			throw new ResponseStatusException

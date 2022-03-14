@@ -44,11 +44,11 @@ public class Place implements Serializable{
 	
 	@Column(name="place_name")
 	private String placeName;
-	
+
 	@OneToOne
     @JoinColumn(name="place_id", insertable = false, updatable = false)
-	private Restaurant restaurant;
-	
+    private Restaurant restaurant;
+    
 	@OneToOne
     @JoinColumn(name="place_id", insertable = false, updatable = false)
 	private Attraction attraction;

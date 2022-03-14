@@ -38,7 +38,7 @@ public interface LehgoFacade {
 	
 	/* User Keyword */
 	UserKeyword getUserKeyword(@Valid User user);
-	Boolean isInUserKeyword(String userId);
+	int isInUserKeyword(String userId);
 	
 	//Place
 	Place getPlace(int id);
@@ -58,7 +58,7 @@ public interface LehgoFacade {
 	/* UserPlace */
 	Place addPlace(Place place);	
 	/* AI Place*/
-	List<PlaceKeyword> getAiPlaceList(int keyword);
+	List<PlaceKeyword> getAiPlaceList(int keyword, String category);
 
 
 	/* Folder */

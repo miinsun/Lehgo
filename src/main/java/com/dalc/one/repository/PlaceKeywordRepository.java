@@ -13,4 +13,9 @@ public interface PlaceKeywordRepository extends CrudRepository<PlaceKeyword, Lon
 	@Query(value = "SELECT * FROM place_keyword pk "+ 
 			"ORDER BY (CASE WHEN pk.keyword_id = :keyword THEN 1 ELSE 2 END)", nativeQuery = true)
 	List<PlaceKeyword> findPlaceKeywordBykeyword(@Param(value = "keyword") int keyword);
+	
+	@Query(value = "SELECT * FROM PLACE_KEYWORD pk, RESTAURANT r " + 
+	"WHERE pk.PLACE_ID = r.PLACE_ID and r.CATEGORY = :category and pk.KEYWORD_ID = :keyword", nativeQuery = true)
+	List<PlaceKeyword> findPlaceKeywordList(@Param(value = "keyword") int keywordId, @Param(value = "category") String category);
+	
 }
