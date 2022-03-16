@@ -257,7 +257,7 @@ public class CourseController{
 	}
 	
 	@ResponseBody
-	@DeleteMapping("like")
+	@PostMapping("dislike")
 	public ResponseEntity<HttpStatus> deleteUserLikeCourse(HttpServletRequest request, 
 			@Valid @RequestBody User user, @RequestParam("cid") int cid) throws Exception {
 		String authorizationHeader = request.getHeader("authorization");
