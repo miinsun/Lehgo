@@ -14,14 +14,6 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 public class UserDTO{
 	private String id;
 	private String password;
-	private String nickname;
-	
-	public UserDTO(String id, String password) {
-		super();
-		this.id = id;
-		this.password = password;
-	}
-
 	
 	/* JavaBeans Properties */
 }
