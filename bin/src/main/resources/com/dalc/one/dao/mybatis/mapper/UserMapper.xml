@@ -16,12 +16,12 @@
 		<result property="auth" column="auth"/>
 	</resultMap>
 	<cache />
-	<select id="getUserList" resultType="User">
+	<select id="getUserList" resultType="User" resultMap="userSelectRM">
 		SELECT *
 		FROM USERINFO WHERE ACTIVE = 1
 	</select>
 	
-	<select id="findUserbyUserId" resultType="User">
+	<select id="findUserbyUserId" resultType="User" resultMap="userSelectRM">
 		SELECT *
 		FROM USERINFO
 		WHERE USER_ID = #{id} AND ACTIVE = 1
@@ -72,6 +72,12 @@
 			AGE = #{age}
 		WHERE USER_ID = #{id}
 	</update>
+	<insert id="signUpAll" parameterType="User">
+		INSERT INTO USERINFO
+		(USER_ID, USER_NAME, PASSWORD, EMAIL, NICKNAME, GENDER, AGE, PLATFORM, TOKEN, AUTH)
+		VALUES
+		(#{id}, #{name}, #{password}, #{email}, #{nickname}, #{gender}, #{age}, #{platform}, #{token}, #{auth})
+	</insert>
 	<insert id="signUp" parameterType="User">
 		INSERT INTO USERINFO
 		(USER_ID, USER_NAME, PASSWORD, EMAIL, NICKNAME, GENDER, AGE)

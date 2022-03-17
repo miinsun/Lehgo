@@ -51,7 +51,7 @@ public class Course implements Serializable{
 	
 	private int editable;
 	
-	@Column(name="like_count")
+	@Column(name="like_count", updatable = true)
 	private int likeCount;
 	
 	@Column(name="course_name")
