@@ -17,7 +17,7 @@ public class Dalc1Application {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://3.37.127.183");
+                registry.addMapping("/**").allowedOrigins("http://3.37.127.183:8081");
             }
         };
     }
