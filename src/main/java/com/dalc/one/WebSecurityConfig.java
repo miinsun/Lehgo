@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.csrf().disable()
 		.httpBasic().disable()
-		.cors().configurationSource(corsConfigurationSource())
+		.cors().configurationSource(corsConfigurationSource()).and()
 		.authorizeRequests()
 //		.antMatchers('/인증 권한이 필요한 페이지').authenticated()
 		.antMatchers("/login").permitAll()
