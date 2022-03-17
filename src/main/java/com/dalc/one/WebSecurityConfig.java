@@ -36,8 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.csrf().disable()
 		.httpBasic().disable()
-		.cors().configurationSource(corsConfigurationSource()).and()
 		.authorizeRequests()
+		.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 //		.antMatchers('/인증 권한이 필요한 페이지').authenticated()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/exists/**").permitAll() //중복 여부 검사
@@ -48,7 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and() 
 		.formLogin()
-			.disable();
+			.disable()
+		.cors().and();
 		
         http.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 	}
@@ -59,19 +60,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder(); 
 	} 
 	
-	 // CORS 허용 적용
 	// CORS 허용 적용
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-
 		configuration.addAllowedOriginPattern("*");
-		configuration.addAllowedHeader("*");
 		configuration.addAllowedMethod("*");
+		configuration.addAllowedHeader("*");
 		configuration.setAllowCredentials(true);
-
+		configuration.setMaxAge(3600L);
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
-	return source;
+		return source;
 	}
 }
