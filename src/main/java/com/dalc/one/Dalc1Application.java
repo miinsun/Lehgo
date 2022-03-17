@@ -21,7 +21,9 @@ public class Dalc1Application {
 	
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
+	
 		return new WebMvcConfigurer() {
+			
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 			registry.addMapping("/**")
@@ -34,11 +36,14 @@ public class Dalc1Application {
 				HttpMethod.PUT.name(),
 				HttpMethod.DELETE.name()
 			);
-		}
+			}
+			
+			@Override
+			public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+				registry.addResourceHandler("/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
+			}
+		};
 	}
 	
-	@Override
-	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
-	}
+	
 }
