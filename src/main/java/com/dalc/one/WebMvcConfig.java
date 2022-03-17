@@ -15,19 +15,27 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	//front 구현을 위한 임시 설정
 	@Override
 	  public void addCorsMappings(CorsRegistry registry) {
-	    registry.addMapping("/**")
-	     	.allowedHeaders("*")
-		.allowedOrigins("http://3.37.127.183:8080")
-		.allowedOrigins("http://3.37.127.183:8081")
-	        // .exposedHeaders("authorization")	//make client read header("jwt-token")
-	        .allowedMethods(
-	            	HttpMethod.GET.name(),
-	            	HttpMethod.HEAD.name(),
-	            	HttpMethod.POST.name(),
-	            	HttpMethod.PUT.name(),
-	            	HttpMethod.DELETE.name());
-           ;
+// 	    registry.addMapping("/**")
+// 	     	.allowedHeaders("*")
+// 		.allowedOrigins("http://3.37.127.183:8080")
+// 		.allowedOrigins("http://3.37.127.183:8081")
+// 	        // .exposedHeaders("authorization")	//make client read header("jwt-token")
+// 	        .allowedMethods(
+// 	            	HttpMethod.GET.name(),
+// 	            	HttpMethod.HEAD.name(),
+// 	            	HttpMethod.POST.name(),
+// 	            	HttpMethod.PUT.name(),
+// 	            	HttpMethod.DELETE.name());
+//            ;
+		  
+	  	 registry.addMapping("/**");
+			.allowedHeaders("*")
+			.allowedOrigins("http://3.37.127.183:8081")
+			.allowedMethods("*")
+			.allowCredentials(false);
 	}
+	
+	
 	
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
