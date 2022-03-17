@@ -34,9 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override 
 	protected void configure(HttpSecurity http) throws Exception { 
 		http
-		.cors().and()
 		.csrf().disable()
 		.httpBasic().disable()
+		.cors().configurationSource(corsConfigurationSource())
 		.authorizeRequests()
 //		.antMatchers('/인증 권한이 필요한 페이지').authenticated()
 		.antMatchers("/login").permitAll()
@@ -60,15 +60,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	} 
 	
 	 // CORS 허용 적용
+	// CORS 허용 적용
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
-	    CorsConfiguration corsConfiguration = new CorsConfiguration();
-	    corsConfiguration.addAllowedOrigin("http://3.37.127.183:8081");
-	    corsConfiguration.addAllowedHeader("*");
-	    corsConfiguration.addAllowedMethod("*");
-	    corsConfiguration.setAllowCredentials(true);
-	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	    source.registerCorsConfiguration("/**", corsConfiguration);
-	    return source;
+		CorsConfiguration configuration = new CorsConfiguration();
+
+		configuration.addAllowedOrigin("*");
+		configuration.addAllowedHeader("*");
+		configuration.addAllowedMethod("*");
+		configuration.setAllowCredentials(true);
+
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+	return source;
 	}
 }
