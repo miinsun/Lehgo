@@ -26,6 +26,7 @@ public class Dalc1Application {
 			public void addCorsMappings(CorsRegistry registry) {
 			registry.addMapping("/**")
 				.allowedOrigins("http://3.37.127.183:8081")
+				.allowedOrigins("http://172.30.1.11:8081") //오류 수정을 위한 임시 IP 
 				.exposedHeaders("*")
 				//.exposedHeaders("authorization")	//make client read header("jwt-token")
 				.allowedMethods(
