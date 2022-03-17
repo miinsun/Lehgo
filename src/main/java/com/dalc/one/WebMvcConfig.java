@@ -28,7 +28,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 // 	            	HttpMethod.DELETE.name());
 //            ;
 		  
-	  	 registry.addMapping("/**");
+	  	 registry.addMapping("/**")
 			.allowedHeaders("*")
 			.allowedOrigins("http://3.37.127.183:8081")
 			.allowedMethods("*")
