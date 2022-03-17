@@ -49,6 +49,5 @@ public class User implements Serializable {
 				+ nickname + ", gender=" + gender + ", age=" + age + ", platform=" + platform + ", token=" + token
 				+ ", auth=" + auth + "]";
 	}
-	/* JavaBeans Properties */
 
 }
