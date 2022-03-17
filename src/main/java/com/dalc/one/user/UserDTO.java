@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class UserDTO{
 	private String id;
 	private String password;
-	
+	private String nickname;
 
 	
 	/* JavaBeans Properties */
