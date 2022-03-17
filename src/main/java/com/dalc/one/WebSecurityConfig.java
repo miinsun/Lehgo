@@ -61,15 +61,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	 // CORS 허용 적용
 	@Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://3.37.127.183:8081"));
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedMethod("*");
-        configuration.setAllowCredentials(true);
-
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+	public CorsConfigurationSource corsConfigurationSource() {
+	    CorsConfiguration corsConfiguration = new CorsConfiguration();
+	    corsConfiguration.addAllowedOrigin("http://localhost:8081");
+	    corsConfiguration.addAllowedHeader("*");
+	    corsConfiguration.addAllowedMethod("*");
+	    corsConfiguration.setAllowCredentials(true);
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", corsConfiguration);
+	    return source;
+	}
 }
