@@ -17,7 +17,15 @@ public class Dalc1Application {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://3.37.127.183:8081");
+                registry.addMapping("/**")
+    		.allowedOrigins("http://3.37.127.183:8081")
+	        .exposedHeaders("authorization")	//make client read header("jwt-token")
+	        .allowedMethods(
+	            	HttpMethod.GET.name(),
+	            	HttpMethod.HEAD.name(),
+	            	HttpMethod.POST.name(),
+	            	HttpMethod.PUT.name(),
+	            	HttpMethod.DELETE.name());
             }
         };
     }
