@@ -166,7 +166,7 @@ public class NaverOauth implements SocialOauth {
                 return "bearer " + token;
             }
             else {
-                throw new Exception("Kakao OAuth failed!");
+                throw new Exception("Naver OAuth failed!");
             }
 	            
 		 }
