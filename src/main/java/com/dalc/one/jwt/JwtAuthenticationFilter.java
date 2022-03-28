@@ -35,6 +35,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
       FilterChain filterChain) throws IOException, ServletException {
     String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+    System.out.println("-- authorizationHeader :: " + authorizationHeader);
     if(authorizationHeader != null) {
 	    try {
 	     UserVO user = jwtTokenProvider.getUserOf(authorizationHeader);
