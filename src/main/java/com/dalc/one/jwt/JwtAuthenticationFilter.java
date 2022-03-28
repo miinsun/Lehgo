@@ -35,8 +35,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
       FilterChain filterChain) throws IOException, ServletException {
     String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-    System.out.println("-- authorizationHeader :: " + authorizationHeader);
-    if(authorizationHeader != null) {
+    if(isStringEmpty(authorizationHeader) == false) {
 	    try {
 	     UserVO user = jwtTokenProvider.getUserOf(authorizationHeader);
 	      SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(
@@ -51,4 +50,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	}
     filterChain.doFilter(request, response);
   }
+  
+  static boolean isStringEmpty(String str) {
+	  return str == null || str.isEmpty();
+  }
+
 }
