@@ -33,7 +33,7 @@ public class OauthController {
     @GetMapping(value = "/{socialLoginType}/redirect")
     public void Redirect(HttpServletResponse response,
     		@PathVariable(name = "socialLoginType") SocialLoginType socialLoginType) {
-        response.setHeader("Location", "http://3.37.127.183:9999/ouath/" + socialLoginType);
+        response.setHeader("Location", "http://legho.net:9999/ouath/" + socialLoginType);
         response.setStatus(302);
     }
     
@@ -55,7 +55,7 @@ public class OauthController {
             @PathVariable(name = "socialLoginType") SocialLoginType socialLoginType,
             @RequestParam(name = "code") String code, HttpServletResponse response) {
         log.info(">> 소셜 로그인 API 서버로부터 받은 code :: {}", code);
-        response.setHeader("Location", "http://3.37.127.183:8081/login?code=" + code + "&socialLoginType=" + socialLoginType);
+        response.setHeader("Location", "http://legho.net/login?code=" + code + "&socialLoginType=" + socialLoginType);
 
         response.setStatus(302);
     }
