@@ -33,7 +33,7 @@ public class OauthController {
     @GetMapping(value = "/{socialLoginType}/redirect")
     public void Redirect(HttpServletResponse response,
     		@PathVariable(name = "socialLoginType") SocialLoginType socialLoginType) {
-        response.setHeader("Location", "http://legho.net:9999/ouath/" + socialLoginType);
+        response.setHeader("Location", "http://lehgo.site:9999/ouath/" + socialLoginType);
         response.setStatus(302);
     }
     
