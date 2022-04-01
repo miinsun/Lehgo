@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class KakaoProfile {
-    public int id;
+    public long id;
     public String connected_at;
     public Properties properties;
     public KakaoAccount kakao_account;
