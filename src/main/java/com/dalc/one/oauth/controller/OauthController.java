@@ -55,7 +55,7 @@ public class OauthController {
             @PathVariable(name = "socialLoginType") SocialLoginType socialLoginType,
             @RequestParam(name = "code") String code, HttpServletResponse response) {
         log.info(">> 소셜 로그인 API 서버로부터 받은 code :: {}", code);
-        response.setHeader("Location", "http://lehgo.site:9999/login?code=" + code + "&socialLoginType=" + socialLoginType);
+        response.setHeader("Location", "http://lehgo.site/login?code=" + code + "&socialLoginType=" + socialLoginType);
 
         response.setStatus(302);
     }
